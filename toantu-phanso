@@ -1,0 +1,86 @@
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+class PhanSo
+{
+private:
+	int ts, ms;
+public:
+	PhanSo();
+	PhanSo(int ts, int ms);
+	PhanSo Cong(const PhanSo& u);
+	void setTs(int ts);
+	int getTs();
+	void setMs(int ts);
+	int getMs();
+	void Xuat();
+	PhanSo operator + (const PhanSo& u);
+	friend PhanSo operator - (const PhanSo &v, const PhanSo& u);
+	PhanSo operator ++ (); //a++
+	friend istream& operator >> (istream& is, PhanSo& u);
+	friend ostream& operator << (ostream& os, const PhanSo& u);
+};
+
+
+
+PhanSo::PhanSo() {
+	ts = 0;
+	ms = 1;
+}
+PhanSo::PhanSo(int ts, int ms) {
+	this->ts = ts;
+	this->ms = ms;
+}
+PhanSo PhanSo::Cong(const PhanSo& u) {
+	PhanSo k;
+	k.ts = ts * u.ms + u.ts * ms;
+	k.ms = ms * u.ms;
+	return k;
+}
+void PhanSo::setTs(int ts) {
+	this->ts = ts;
+}
+int PhanSo::getTs() {
+	return ts;
+}
+void PhanSo::setMs(int ts) {
+	this->ts = ts;
+}
+int PhanSo::getMs() {
+	return ms;
+}
+void PhanSo::Xuat() {
+	cout << ts << "/" << ms << endl;
+}
+PhanSo PhanSo::operator + (const PhanSo& u) {
+	PhanSo k;
+	k.ts = ts * u.ms + u.ts * ms;
+	k.ms = ms * u.ms;
+	return k;
+}
+PhanSo PhanSo::operator ++ () {
+	ts += ms;
+	PhanSo k(ts, ms);
+	return k;
+}
+istream& operator >> (istream& is, PhanSo& u) {
+	char tam;
+	cout << "Nhap phan so (ts/ms): ";
+	is >> u.ts >> tam >> u.ms;
+	return is;
+}
+ostream& operator << (ostream& os, const PhanSo& u) {
+	os << u.ts << "/" << u.ms << endl;
+	return os;
+}
+
+PhanSo::operator double() {
+	return (double)ts / ms;
+}
+PhanSo::operator float() {
+	return (float)ts / ms;
+}
+PhanSo::operator int() {
+	return ts / ms;
+}
