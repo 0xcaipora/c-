@@ -1,0 +1,108 @@
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+class Monhoc {
+private:
+	char tenmh[21];
+	int st;
+public:
+	Monhoc();
+	void Nhap();
+	void Xuat();
+	int Layst();
+};
+class Giaovien {
+private:
+	char tengv[30];
+	int namsinh;
+	int somon;
+	Monhoc *p;
+public:
+	Giaovien();
+	Giaovien(const Giaovien &u);
+	~Giaovien();
+	void Nhapgv();
+	void Xuatgv();
+	void Sapxep();
+};
+Monhoc::Monhoc() {
+	tenmh[0] = 0;
+	st = 0; 
+}
+void Monhoc::Nhap() {
+	cout << "Nhap ten mon hoc: "; 
+	cin.getline(tenmh, 20); 
+	cout << "Nhap so tiet: "; 
+	cin >> st; 
+	cin.ignore(); 
+}
+void Monhoc::Xuat() {
+	cout << tenmh << "\t" << st << "\n"; 
+}
+int Monhoc::Layst() {
+	return st; 
+}
+Giaovien::Giaovien() {
+	tengv[0] = 0; 
+	namsinh = somon = 0; 
+	p = NULL; 
+}
+Giaovien::Giaovien(const Giaovien &u) {
+	strcpy_s(tengv, u.tengv); 
+	namsinh = u.namsinh; 
+	somon = u.somon;
+	p = new Monhoc[somon]; 
+	for (int i = 0; i < somon; i++) {
+		p[i] = u.p[i];
+	}
+}
+Giaovien::~Giaovien() {
+	cout << "Goi Giaovien::~Giaovien()\n"; 
+	for (int i = 0; i < somon; i++)
+		delete [i]p; //luc giai phong cho nay bi bao loi, ko hieu la loi gi luon 
+	p = NULL; 
+}
+void Giaovien::Nhapgv() {
+	cout << "Nhap ten giao vien: "; 
+	cin.getline(tengv, 30); 
+	cout << "Nhap nam sinh: "; 
+	cin >> namsinh; 
+	cout << "Nhap so mon: "; 
+	cin >> somon; 
+	cin.ignore();
+	p = new Monhoc[somon]; 
+	for (int i = 0; i < somon; i++) {
+		cout << "Mon hoc thu: " << i << ":";
+		p[i].Nhap(); 
+	}
+}
+void Giaovien::Xuatgv() {
+	cout << tengv << "\t" << namsinh << "\t" << somon << "\n"; 
+	for (int i = 0; i < somon; i++) {
+		p[i].Xuat(); 
+	}
+}
+void Giaovien::Sapxep() {
+	for (int i = 0; i < somon - 1; i++) {
+		for (int j = i + 1; j < somon; j++)
+			if (p[i].Monhoc::Layst < p[j].Monhoc::Layst) { // doan nay luc chay bi bao loi 
+				Monhoc tam = p[i];
+				p[i] = p[j]; 
+				p[j] = tam; 
+			}
+	}
+}
+int main() // ko biet viet ham main ntn cho hop ly + ngan gon 
+{
+	Monhoc a;
+	a.Nhap(); 
+	Monhoc b; 
+	b.Nhap(); 
+	Giaovien n; 
+	n.Nhapgv();
+	n.Xuatgv(); 
+	Giaovien y; 
+	y.Nhapgv(); 
+	y.Xuatgv(); 
+}
