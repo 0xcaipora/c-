@@ -1,0 +1,77 @@
+class Vector {
+
+private:
+	int n; //Số chiều
+	float *p; //Con trỏ tới vùng nhớ chứa các tọa độ
+public:
+	Vector();
+	Vector(int nn);
+	Vector(const Vector &u);
+	~Vector();
+	void Nhap();
+	void Xuat();
+	int GetN(); //Lấy số chiều
+	friend istream& operator>>(istream &is, Vector &u); //Toán tử nhập
+	friend ostream& operator<<(ostream &os, const Vector &u); /*Toán tử xuất*/
+	Vector& operator=(const Vector & u); //Toán tử gán
+	Vector operator+(const Vector & u); //Cộng hai Vector
+	Vector operator-(const Vector &u); //Trừ hai Vector
+	Vector operator*(float x); //Nhân vô hướng Vector với số thực
+	float operator*(const Vector &u);
+}
+Vector v;
+Vector::Vector() {
+	n = 0; 
+	p = NULL; 
+}
+Vector::Vector(int nn) {
+	n = nn; 
+	p = new float[n]; 
+}
+Vector::Vector(const Vector &u) { //Ham thiet lap sao chep
+	
+	int a = v.n;
+	p = new float[n]; 
+	for (int i = 0; i < a; i++)
+		p[i] = u.p[i]; 
+}
+Vector::~Vector() {
+	delete[]p; 
+	p = NULL; 
+}
+void Vector::Nhap() {
+	if (p == NULL) {
+		cout << "Nhap so chieu: "; 
+		cin >> n; 
+		p = new float[n]; 
+	}
+	for (int i = 0; i < n; i++) {
+		cout << " Toa do thu " << i << ":"; cin >> p[i]; 
+	}
+}
+void Vector::Xuat() {
+	for (int i = 0; i < n; i++)
+		cout << p[i] << "\t"; 
+	cout << "\n"; 
+}
+int Vector::GetN() {
+	return n; 
+}
+istream& operator>>(istream &is, Vector &u) {
+//ko hieu ca phan istream voi ostream nay la gi huhu 
+istream& operator>>(istream &is, Vector &u) {
+	if (u.p != NULL) {
+		cout << "Nhap so chieu:"; 
+		is >> u.n; 
+		u.p = new float[u.n]; 
+	}
+	for (int i = 0; i < u.n; i++) {
+		cout << "Toa do thu" << i << ":"; 
+		is >> u.p[i]; 
+	}
+	return is; 
+}
+ostream& operator<<(ostream &os, const Vector &u) {
+//ko hieu gi het 2 cai ham nay, ma toi 12h roi thay van chua cho nghi hoc, huhuhu. buon ngu qua ne, ma ko lam ra bai cung met qua ne 
+}
+}
