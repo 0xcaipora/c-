@@ -57,7 +57,7 @@ void Vector::Xuat() {
 int Vector::GetN() {
 	return n; 
 }
-istream& operator>>(istream &is, Vector &u) {
+istream& operator>>(istream &is, Vector &u) { //tai sao cho nay da khai bao lam ham ban - friend - ma no van bao loi la ko lay duoc thong tin
 		if (u.p == NULL) {
 			cout << "Nhap so chieu:";
 			is >> u.n;
