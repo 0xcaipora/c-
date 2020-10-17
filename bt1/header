@@ -42,4 +42,20 @@ public:
 	void Xuat(); 
 };
 
-  
+//lop GVHDLV 
+#pragma once
+#include "GV.h"
+#include "LV.h"
+class GVHDLV:public GV {
+private:
+	int slv; 
+	LV* p; 
+public: 
+	GVHDLV(); 
+	~GVHDLV();
+	GVHDLV(const GVHDLV &u);
+	void Nhap(); 
+	void Xuat(); 
+	GVHDLV& operator=(const GVHDLV& u); 
+};
+
