@@ -1,0 +1,45 @@
+#pragma once
+class MH {
+private: 
+	char tenmh[21]; 
+	int st; 
+public: 
+	MH(); 
+	void Nhap(); 
+	void Xuat(); 
+	int Layst(); 
+};
+#pragma once
+#include "MH.h"
+
+class GV {
+private:
+	char tengv[31];
+	int ns; 
+	int sm; 
+	MH* p; 
+public:
+	GV(); 
+	~GV();
+	GV(const GV& u);
+	GV& operator=(const GV& u); 
+	int LaySM(); 
+	void Nhap(); 
+	void Xuat(); 
+	void Sapxep();
+};
+#pragma once
+
+class LV {
+private:
+	char tenlv[31]; 
+	char tensv[31]; 
+	int nbv; 
+
+public: 
+	LV();
+	void Nhap(); 
+	void Xuat(); 
+};
+
+  
