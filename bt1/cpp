@@ -1,0 +1,99 @@
+//MH.cpp
+#include  "MH.h"
+#include <iostream>
+using namespace std; 
+
+MH::MH() {
+	tenmh[0] = 0;
+	st = 0;
+}
+void MH::Nhap() {
+	cout << "Nhap ten mon hoc: "; 
+	cin.getline(tenmh, 25); 
+	cout << "So tiet: "; 
+	cin >> st; 
+}
+void MH::Xuat() {
+	cout << "Ten mon hoc: " << tenmh << "\t" << "So tiet: " << st << endl; 
+}
+int MH::Layst() {
+	return st; 
+}
+
+//GV.cpp 
+#include "GV.h"
+#include "MH.h"
+#include <iostream>
+using namespace std;
+
+GV::GV() {
+	tengv[0] = 0;
+	ns = sm = 0;
+	p = NULL; 
+}
+GV::~GV() {
+	delete[]p; 
+	p = NULL; 
+}
+GV::GV(const GV& u) {
+	strcpy(tengv, u.tengv); 
+	ns = u.ns; 
+	sm = u.sm; 
+	p = new MH[sm]; 
+	for (int i = 0; i < sm; i++)
+		p[i] = u.p[i]; 
+}
+GV& GV::operator=(const GV& u) {
+//chua lam duoc, ma cung chua hieu cho toan tu gan phan nay 
+}
+int GV::LaySM() {
+	return sm; 
+}
+void GV::Nhap() {
+	cout << "Ho ten giao vien la: ";
+	cin.getline(tengv, 25);
+	cout << "Nam sinh: ";
+	cin >> ns;
+	cout << "So mon: "; 
+	cin >> sm; 
+	p = new MH[sm]; 
+	for (int i = 0; i < sm; i++) {
+		cout << "Mon hoc thu " << i << ":"; 
+		p[i].Nhap(); 
+	}
+}
+void GV::Xuat() {
+	cout << tengv << "\t" << ns << "\t" << sm << endl; 
+	for (int i = 0; i < sm; i++)
+		p[i].Xuat(); 
+}
+void GV::Sapxep() {
+	for (int i = 0; i < sm-1; i++)
+		for (int j = i + 1; j < sm; j++) 
+			if (p[i].Layst() < p[j].Layst()) {
+				MH tam = p[i]; 
+				p[i] = p[j]; 
+				p[j] = tam;
+			}
+}
+// LV.cpp 
+#include "LV.h"
+#include "iostream"
+using namespace std; 
+
+LV::LV() {
+	tenlv[0] = 0; 
+	tensv[0] = 0; 
+	nbv = 0; 
+}
+void LV::Nhap() {
+	cout << "Nhap ten luan van: "; 
+	cin.getline(tenlv, 31); 
+	cout << "Nhap ten sinh vien: "; 
+	cin.getline(tensv, 20); 
+	cout << "Nhap nbv"; 
+	cin >> nbv; 
+}
+void LV::Xuat() {
+	cout << tenlv << "\t" << tensv << "\t" << nbv << endl;
+}
