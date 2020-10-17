@@ -97,3 +97,28 @@ void LV::Nhap() {
 void LV::Xuat() {
 	cout << tenlv << "\t" << tensv << "\t" << nbv << endl;
 }
+\
+// GVHDLV.cpp 
+#include "GV.h"
+#include "GVHDLV.h"
+#include <iostream>
+using namespace std;
+
+GVHDLV::GVHDLV() {
+
+}
+GVHDLV::~GVHDLV() {
+
+}
+GVHDLV::GVHDLV(const GVHDLV& u) {
+
+}
+void GVHDLV::Nhap() {
+
+}
+void GVHDLV::Xuat() {
+
+}
+GVHDLV& GVHDLV::operator=(const GVHDLV& u) {
+
+}
