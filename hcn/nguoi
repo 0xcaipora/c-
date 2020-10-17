@@ -1,0 +1,57 @@
+#pragma once
+class Nguoi {
+private:
+	char ht[25]; 
+	char ns[12]; 
+	char gt[5]; 
+public: 
+	Nguoi(); 
+	Nguoi(char* ht, char* ns, char* gt); 
+	Nguoi(const Nguoi& u); 
+	void Nhap(); 
+	void Xuat(); 
+};
+#pragma once
+#include "Nguoi.h"; 
+class Hocsinh:public Nguoi {
+private: 
+	char tr[25]; 
+	char lp[10]; 
+public: 
+	Hocsinh(); 
+	Hocsinh(char* ht, char* ns, char* gt, char* tr, char* lp); 
+	Hocsinh(const Hocsinh& u); 
+	void Nhap(); 
+	void Xuat(); 
+};
+#include "Nguoi.h"
+#include <iostream>
+using namespace std;
+Nguoi::Nguoi() {
+	ht[0] = 0;
+	ns[0] = 0;
+	gt[0] = 0; 
+}
+Nguoi::Nguoi(char* ht, char* ns, char* gt) {
+	strcpy(this->ht, ht); 
+	strcpy(this->ns, ns); 
+	strcpy(this->gt, gt); 
+}
+Nguoi::Nguoi(const Nguoi& u) {
+	strcpy(ht, u.ht);
+	strcpy(ns, u.ns);
+	strcpy(gt, u.gt);
+}
+void Nguoi::Nhap() {
+	cout << "Ho ten la: ";
+	cin.getline(ht, 25);
+	cout << "Nam sinh: ";
+	cin.getline(ns, 12);
+	cout << "Gioi tinh: ";
+	cin.getline(gt, 5);
+}
+void Nguoi::Xuat() {
+	cout << 
+}
+
+
