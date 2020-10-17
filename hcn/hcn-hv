@@ -1,0 +1,65 @@
+#pragma once
+class HCN {
+private: 
+	int cd, cr; 
+public: 
+	HCN(); 
+	HCN(int cd, int cr); 
+	double Chuvi(); 
+	double Dientich(); 
+	char* Tenhinh(); 
+};
+#pragma once
+#include "HCN.h"
+class HV :
+	public HCN
+{
+public: 
+	HV(); 
+	HV(int canh); 
+	char* Tenhinh(); 
+};
+#include "HCN.h"
+#include <iostream>
+
+HCN::HCN() {
+	cd = 0; 
+	cr = 0;
+}
+HCN::HCN(int cd, int cr) {
+	this->cd = cd; 
+	this->cr = cr; 
+}
+double HCN::Chuvi() {
+	return ((double)cd + cr)*2;
+}
+double HCN::Dientich() {
+	return (double)cd * cr; 
+}
+char* HCN::Tenhinh() {
+	return "Hinh Chu nhat";
+
+}
+#include "HV.h"
+#include <iostream>
+using namespace std;
+
+HV::HV():HCN() {
+	
+}
+HV::HV(int canh) : HCN(canh, canh) {
+	
+}
+char* HV::Tenhinh() {
+	char* th = new char[25]; 
+	strcpy(th, "Hinh Vuong"); 
+	return th; 
+}
+int main()
+{
+	HCN hcn1(5, 3);
+	cout << hcn1.TenHinh() << ", Chu vi: " << hcn1.ChuVi() << ", Dien tich: " << hcn1.DienTich() << endl;
+	HV hv1(5);
+	cout << hv1.TenHinh() << ", Chu vi: " << hv1.ChuVi() << ", Dien tich: " << hv1.DienTich() << endl;
+
+}
