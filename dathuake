@@ -1,0 +1,66 @@
+#pragma once
+#include <iostream>
+using namespace std;
+
+class A {
+private:
+	double x, y;
+public:
+	A();
+	A(double xx, double yy);
+	double Getx();
+	double Gety();
+};
+
+class B : virtual public A {
+public: 
+	B(); 
+	B(double xx, double yy); 
+};
+
+class C : virtual public A {
+public: 
+	C(); 
+	C(double xx, double yy); 
+};
+class D : public B, public C {
+public: 
+	D(double xx, double yy); 
+};
+#include <iostream>
+#include "ClassA.h"
+using namespace std; 
+
+
+A::A() {
+	x = y = 0; 
+}
+
+A::A(double xx, double yy) {
+	x = xx; 
+	y = yy; 
+}
+double A::Getx() {
+	return x; 
+}
+double A::Gety() {
+	return y; 
+}
+B::B():A() { 
+}
+B::B(double xx, double yy) : A(xx, yy ) {
+}
+C::C():A() {
+
+}
+C::C(double xx, double yy) : A(xx, yy) {
+}
+D::D(double xx, double yy):A(xx,yy), B(4,5), C(6,7) {
+}
+int main() {
+	D d(2, 3); 
+	cout << "d.Getx() = " << d.Getx() << endl; 
+	cout << "d.Gety() = " << d.Gety() << endl; 
+}
+
+
