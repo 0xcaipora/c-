@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std; 
+
+/*Xây dựng các khuôn hình hàm sau:
+- Khuôn hình hàm HoanVi để hoán vị hai số truyền vào.
+ Khuôn hình hàm SapXep dùng để sắp xếp một mảng theo thứ tự tăng trong đó có sử dụng khuôn hình
+hàm HoanVi.
+ Khuôn hình hàm Nhap để nhập một mảng từ bàn phím.
+ Khuôn hình hàm Xuat để xuất một mảng ra màn hình.
+Sử dụng các khuôn hình đã xây dựng để viết một chương trình nhập, sắp xếp và xuất 4 mảng: một mảng
+nguyên, một mảng thực, một mảng ký tự và một mảng chuỗi.*/
+
+template <class T> 
+void HoanVi(T& u, T& v) {
+	T tam = u; 
+	u = v; 
+	v = tam; 
+}
+template <class T> 
+void SapXep(T a[], int n) {
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+			if (a[i] < a[j])
+				HoanVi(a[i], a[j]);
+	}
+}
+template <class T>
+void SapXep(char *a[], int n) {
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+			if (strcmp (a[i], a[j]) > 0)
+				HoanVi(a[i], a[j]);
+	}
+}
+template <class T> 
+void Nhap(T a[], int &n) {
+	cout << "Nhap so phan tu cua mang: "; 
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cout << "Nhap gia tri a[" << i << "] la: "; 
+		cin >> a[i]; 
+	}
+}
+template <class T> 
+void Xuat(T a[], int n) {
+	cout << " Cac gia tri trong mang la "; 
+	for (int i = 0; i < n; i++)
+		cout << a[i] << "\t";
+	cout << endl;
+}
+int main() {
+	/*int a[10]; int n; 
+	float b[10]; int t; 
+	Nhap(a, n); Xuat(a, n); SapXep(a, n); Xuat(a, n);
+
+	Nhap(b, t); Xuat(b, t); SapXep(b, t); Xuat(b, t);
+	*/
+	char c[10]; int k;
+	char d[10][20]; int e;  
+	
+
+	Nhap(c, k); Xuat(c, k); SapXep(c, k); Xuat(c, k); // cai nay chay ra lung tung, chac do khong dung ham fflushstin gi gi do, quen r 
+	Nhap(d, e); Xuat(d, e); SapXep(d, e); Xuat(d, e); /// ham nay bao loi, bao 3 loi sau 
+  /* 
+  line 15: "tam": array innitialization requires a brace-enclosed initializer set 
+  line 16 + line 17: array type 'char[20]' is not assignable
+}
+}
